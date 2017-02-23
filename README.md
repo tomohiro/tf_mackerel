@@ -1,7 +1,7 @@
 tf_mackerel
 ================================================================================
 
-A Terraform module for Mackerel AWS Integration.
+A Terraform module for [Mackerel AWS Integration](https://mackerel.io/docs/entry/integrations/aws).
 
 
 Usage
@@ -19,6 +19,12 @@ Module Input Variables
 --------------------------------------------------------------------------------
 
 - `role_name` - Role name of a Mackerel AWS Integration
+
+
+Outpus
+--------------------------------------------------------------------------------
+
+- `role_arn` - The Amazon Resource Name (ARN) specifying the mackerel role.
 
 
 LICENSE
