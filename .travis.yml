@@ -1,10 +1,4 @@
-addons:
-  apt:
-    sources:
-      - debian-sid
-    packages:
-      - libssl1.0.0
-      - g++-multilib
+sudo: required
 
 before_install:
   - mkdir "${HOME}/bin"
