@@ -1,9 +1,9 @@
-resource "aws_iam_role" "mackerel" {
+resource "aws_iam_role" "aws_integration" {
   name               = "${var.role_name}"
-  assume_role_policy = "${data.aws_iam_policy_document.mackerel_assume_policy.json}"
+  assume_role_policy = "${data.aws_iam_policy_document.assume_policy.json}"
 }
 
-data "aws_iam_policy_document" "mackerel_assume_policy" {
+data "aws_iam_policy_document" "assume_policy" {
   statement {
     actions = ["sts:AssumeRole"]
     effect  = "Allow"
@@ -21,13 +21,13 @@ data "aws_iam_policy_document" "mackerel_assume_policy" {
   }
 }
 
-resource "aws_iam_role_policy" "mackerel" {
-  name   = "MackerelAWSAccess"
-  role   = "${aws_iam_role.mackerel.name}"
-  policy = "${data.aws_iam_policy_document.mackerel_inline_policy.json}"
+resource "aws_iam_role_policy" "aws_integration" {
+  name   = "MackerelAWSIntegrationAccess"
+  role   = "${aws_iam_role.aws_integration.name}"
+  policy = "${data.aws_iam_policy_document.inline_policy.json}"
 }
 
-data "aws_iam_policy_document" "mackerel_inline_policy" {
+data "aws_iam_policy_document" "inline_policy" {
   statement {
     effect    = "Allow"
     actions   = ["elasticache:ListTagsForResource"]
@@ -35,22 +35,22 @@ data "aws_iam_policy_document" "mackerel_inline_policy" {
   }
 }
 
-resource "aws_iam_role_policy_attachment" "mackerel_ec2" {
-  role       = "${aws_iam_role.mackerel.name}"
+resource "aws_iam_role_policy_attachment" "ec2_readonly_access" {
+  role       = "${aws_iam_role.aws_integration.name}"
   policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess"
 }
 
-resource "aws_iam_role_policy_attachment" "mackerel_elasticache" {
-  role       = "${aws_iam_role.mackerel.name}"
+resource "aws_iam_role_policy_attachment" "elasticache_readonly_access" {
+  role       = "${aws_iam_role.aws_integration.name}"
   policy_arn = "arn:aws:iam::aws:policy/AmazonElastiCacheReadOnlyAccess"
 }
 
-resource "aws_iam_role_policy_attachment" "mackerel_rds" {
-  role       = "${aws_iam_role.mackerel.name}"
+resource "aws_iam_role_policy_attachment" "rds_readonly_access" {
+  role       = "${aws_iam_role.aws_integration.name}"
   policy_arn = "arn:aws:iam::aws:policy/AmazonRDSReadOnlyAccess"
 }
 
-resource "aws_iam_role_policy_attachment" "mackerel_redshift" {
-  role       = "${aws_iam_role.mackerel.name}"
+resource "aws_iam_role_policy_attachment" "redshift_readonly_access" {
+  role       = "${aws_iam_role.aws_integration.name}"
   policy_arn = "arn:aws:iam::aws:policy/AmazonRedshiftReadOnlyAccess"
 }
