@@ -1,5 +1,13 @@
 sudo: false
 
+addons:
+  apt:
+    sources:
+      - debian-sid
+    packages:
+      - libssl1.0.0
+      - g++-multilib
+
 before_install:
   - mkdir "${HOME}/bin"
   - wget 'https://releases.hashicorp.com/terraform/0.8.7/terraform_0.8.7_linux_amd64.zip' -O terraform.zip
