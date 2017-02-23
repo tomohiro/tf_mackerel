@@ -1,6 +1,8 @@
 tf_mackerel
 ================================================================================
 
+[![Build Status](https://img.shields.io/travis/Tomohiro/tf_mackerel.svg?style=flat-square)](https://travis-ci.org/Tomohiro/tf_mackerel)
+
 A Terraform module for [Mackerel AWS Integration](https://mackerel.io/docs/entry/integrations/aws).
 
 
