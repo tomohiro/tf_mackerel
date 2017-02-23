@@ -2,7 +2,7 @@ sudo: false
 
 before_install:
   - mkdir "${HOME}/bin"
-  - curl -fSL 'https://releases.hashicorp.com/terraform/0.8.2/terraform_0.8.2_linux_amd64.zip' -o terraform.zip
+  - curl -fSL 'https://releases.hashicorp.com/terraform/0.8.7/terraform_0.8.7_linux_amd64.zip' -o terraform.zip
   - unzip terraform.zip
   - chmod +x terraform
   - mv terraform "${HOME}/bin/terraform"
